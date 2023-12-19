@@ -6,6 +6,7 @@
   "repository": "https://github.com/codex-team/hawk.vite.plugin.git",
   "author": "CodeX <team@codex.so>",
   "license": "MIT",
+  "type": "module",
   "devDependencies": {
     "eslint": "^8.56.0",
     "eslint-config-codex": "^1.9.1"

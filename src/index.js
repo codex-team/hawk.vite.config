@@ -1,6 +1,5 @@
 import fs from 'fs/promises';
-import { consoleColors, wrapInColor } from './utils/log';
-import { log } from 'console';
+import { consoleColors, wrapInColor, log } from './utils/log.js';
 
 /**
  * Vite plugin that uploads sourcemaps to Hawk
