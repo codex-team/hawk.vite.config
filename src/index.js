@@ -1,8 +1,13 @@
 import fs from 'fs/promises';
+import MagicString from 'magic-string';
 import { consoleColors, wrapInColor, log } from './utils/log.js';
+
+const virtualModuleId = 'virtual:hawk/globals';
+const resolvedVirtualModuleId = '\0' + virtualModuleId;
 
 /**
  * Vite plugin that uploads sourcemaps to Hawk
+ * and exposes release id to be available in global scope
  *
  * @param opts - plugin options
  * @param opts.token - Hawk integration token
@@ -52,6 +57,69 @@ export default function hawkVitePlugin({
         },
       };
     },
+
+    resolveId: (id) => {
+      if (id === virtualModuleId) {
+        return resolvedVirtualModuleId;
+      }
+    },
+
+    /**
+     * Replaces import of virtual module with injection code
+     *
+     * @param {string} id - module id
+     * @returns {string|undefined}
+     */
+    load: (id) => {
+      if (id === resolvedVirtualModuleId) {
+        return getInjectionCode(release);
+      }
+    },
+
+    /**
+     * Adds virtual module import to a script file
+     *
+     * @param {string} code - module source code
+     * @param {string} id - module id
+     * @returns transformation result
+     */
+    transform: (code, id) => {
+      if (id === resolvedVirtualModuleId) {
+        return;
+      }
+
+      if (id.includes('node_modules')) {
+        return;
+      }
+
+      /* Id without params and hashes */
+      const pureId = id.split(/[?|#]/).shift();
+
+      const scriptExt = ['.js', '.ts', '.jsx', '.tsx', '.mjs'];
+
+      const isScript = !!scriptExt.find(ext => pureId.endsWith(ext));
+
+      if (!isScript) {
+        return;
+      }
+
+      const ms = new MagicString(code);
+
+      /* Adding import to script file to later replace it with data injecting code */
+      ms.append(`\n\n;import "${virtualModuleId}";`);
+
+      return {
+        code: ms.toString(),
+        map: ms.generateMap({ hires: true }),
+      };
+    },
+
+    /**
+     * Sends soucemaps to Hawk
+     *
+     * @param _
+     * @param {*} bundlesInfo
+     */
     writeBundle: async (_, bundlesInfo) => {
       const sourceMapFiles = getSourceMapsFileNames(bundlesInfo);
 
@@ -152,4 +220,26 @@ function getIntegrationId(integrationToken) {
 async function deleteSourceMapFile(file) {
   await fs.unlink(file);
   log(`Map ${file} deleted`, consoleColors.fgCyan, true);
+}
+
+/**
+ * Returns code for injecting release id value to global scope
+ *
+ * @param release - release id
+ * @returns {string}
+ */
+function getInjectionCode(release) {
+  const code = `
+    var _global =
+      typeof window !== 'undefined' ?
+        window :
+        typeof global !== 'undefined' ?
+          global :
+          typeof self !== 'undefined' ?
+            self :
+            {};
+
+    _global.HAWK_RELEASE="${release}";`;
+
+  return code;
 }

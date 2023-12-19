@@ -10,5 +10,8 @@
   "devDependencies": {
     "eslint": "^8.56.0",
     "eslint-config-codex": "^1.9.1"
+  },
+  "dependencies": {
+    "magic-string": "^0.30.5"
   }
 }
