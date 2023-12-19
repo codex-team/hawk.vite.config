@@ -13,7 +13,7 @@ const resolvedVirtualModuleId = '\0' + virtualModuleId;
  * @param opts.token - Hawk integration token
  * @param [opts.release] - unique identifier of the release
  * @param [opts.removeSourceMaps] - true if the plugin should remove emitted source map files
- * @param [opts.collectorEndpoint] - sourcemaps collector enpoint overwrite
+ * @param [opts.collectorEndpoint] - sourcemaps collector endpoint overwrite
  * @returns plugin definition
  */
 export default function hawkVitePlugin({
