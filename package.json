@@ -1,4 +1,13 @@
 {
-  "name": "hawk.vite.config",
-  "packageManager": "yarn@3.2.2"
+  "name": "@hawk.so/vite-plugin",
+  "description": "Vite plugin for sending source-maps to the Hawk",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "repository": "https://github.com/codex-team/hawk.vite.plugin.git",
+  "author": "CodeX <team@codex.so>",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.56.0",
+    "eslint-config-codex": "^1.9.1"
+  }
 }
