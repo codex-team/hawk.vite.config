@@ -1,1 +1,35 @@
-# hawk.vite.config
+# Hawk Vite Plugin
+
+Vite plugin for sending sourcemaps to Hawk.
+
+## Install
+```
+yarn add @hawk.so/vite-plugin --save-dev
+```
+
+## Connect
+Include the plugin to the plugins list of `vite.config` file
+
+```
+import hawkVitePlugin from '@hawk.so/vite-plugin';
+
+export default defineConfig({
+  plugins: [
+    ...,
+    hawkVitePlugin({
+      token: '' // Your project's Integration Token
+    })
+  ]
+})
+```
+
+### Plugin options
+| name | type | required | description |
+| -- | -- | -- | -- |
+| `token` | string | **required** | Your project's Integration Token |
+| `release` | string/number | optional | Unique identifier of the release. Used for source map consuming (see below) |
+| `removeSourceMaps` | boolean | optional | Shows if the plugin should remove emitted source map files. Default is `true` |
+| `collectorEndpoint` | string | optional | Sourcemaps collector endpoint overwrite |
+
+After plugin finish its work, it will export release information to the global scope. 
+You can access release identifier via `window.HAWK_RELEASE` in browser and `global.HAWK_RELEASE` in NodeJS and pass this data to the JavaScript Catcher on initialization.
