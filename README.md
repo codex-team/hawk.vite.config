@@ -4,7 +4,7 @@ Vite plugin for sending sourcemaps to Hawk.
 
 ## Install
 ```
-yarn add @hawk.so/vite-plugin --save-dev
+yarn add @hawk.so/vite-plugin -D
 ```
 
 ## Connect
