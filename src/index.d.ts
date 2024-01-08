@@ -28,6 +28,6 @@ interface HawkVitePluginOptions {
  * and exposes release id to be available in global scope
  * @param options - plugin options
  */
-declare function hawkVitePlugin(options: HawkVitePluginOptions): unknown;
+declare function hawkVitePlugin(options: HawkVitePluginOptions): any;
 
 export = hawkVitePlugin
