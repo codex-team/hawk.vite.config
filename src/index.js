@@ -38,7 +38,7 @@ export default function hawkVitePlugin({
     release = new Date();
   }
 
-  let outDir;
+  let outDir = 'dist';
 
   return {
     name: 'hawk-vite-plugin',
@@ -46,7 +46,9 @@ export default function hawkVitePlugin({
       /**
        * Save build dir
        */
-      outDir = config.build.outDir || 'dist';
+      if (config.build && config.build.outDir) {
+        outDir = config.build.outDir;
+      }
 
       /**
        * Add sourcemap setting to vite config

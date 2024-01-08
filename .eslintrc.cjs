@@ -7,6 +7,7 @@ module.exports = {
     'eslint:recommended',
     'codex',
   ],
+  ignorePatterns: [ 'src/index.d.ts' ],
   overrides: [
     {
       env: {
