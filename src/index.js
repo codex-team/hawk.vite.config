@@ -55,7 +55,7 @@ export default function hawkVitePlugin({
        */
       return {
         build: {
-          sourcemap: true,
+          sourcemap: removeSourceMaps ? 'hidden' : true,
         },
       };
     },
