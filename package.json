@@ -1,7 +1,7 @@
 {
   "name": "@hawk.so/vite-plugin",
   "description": "Vite plugin for sending source-maps to the Hawk",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "main": "src/index.js",
   "repository": "https://github.com/codex-team/hawk.vite.plugin.git",
   "author": "CodeX <team@codex.so>",

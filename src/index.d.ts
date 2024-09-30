@@ -30,4 +30,4 @@ interface HawkVitePluginOptions {
  */
 declare function hawkVitePlugin(options: HawkVitePluginOptions): any;
 
-export = hawkVitePlugin
+export default hawkVitePlugin
