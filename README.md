@@ -1,16 +1,16 @@
 # Hawk Vite Plugin
 
-Vite plugin for sending sourcemaps to Hawk.
+Vite plugin for sending releases with sourcemaps to Hawk.
 
 ## Install
-```
+```shell
 yarn add @hawk.so/vite-plugin -D
 ```
 
 ## Connect
 Include the plugin to the plugins list of `vite.config` file
 
-```
+```js
 import hawkVitePlugin from '@hawk.so/vite-plugin';
 
 export default defineConfig({
