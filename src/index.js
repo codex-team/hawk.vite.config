@@ -181,7 +181,7 @@ async function sendSourceMapFile(filePath, collectorEndpoint, token, releaseId) 
     const responseData = await response.json();
 
     if (responseData.error) {
-      throw new Error(responseData.error);
+      throw new Error(responseData.message ?? responseData.error ?? 'Untitled error');
     }
 
     log(filePath + ' – ' + wrapInColor('sent', consoleColors.fgGreen), consoleColors.fgCyan, true);

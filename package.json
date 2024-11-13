@@ -1,12 +1,17 @@
 {
   "name": "@hawk.so/vite-plugin",
   "description": "Vite plugin for sending source-maps to the Hawk",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "main": "src/index.js",
   "repository": "https://github.com/codex-team/hawk.vite.plugin.git",
   "author": "CodeX <team@codex.so>",
   "license": "MIT",
   "type": "module",
+  "types": "src/index.d.ts",
+  "files": [
+    "src",
+    "global.d.ts"
+  ],
   "scripts": {
     "lint": "eslint src/ --ext .js --fix"
   },
