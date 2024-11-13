@@ -41,7 +41,7 @@ You can access release identifier via `window.HAWK_RELEASE` in browser and `glob
 
 #### TypeScript
 
-To make TypeScript see typings for `window.HAWK_RELEASE` and `global.HAWK_RELEASE` their declaration in your "tsconfig.json"
+To make TypeScript see typings for `window.HAWK_RELEASE` and `global.HAWK_RELEASE` add their declaration in your "tsconfig.json"
 
 ```json
 {
