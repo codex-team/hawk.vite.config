@@ -176,6 +176,7 @@ async function sendSourceMapFile(filePath, collectorEndpoint, token, releaseId) 
       headers: {
         Authorization: `Bearer ${token}`,
       },
+      signal: AbortSignal.timeout(4500),
     });
 
     const responseData = await response.json();
